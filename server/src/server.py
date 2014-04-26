@@ -1,5 +1,5 @@
 from handlers import handler
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
 #for now define routes inline with server.py
@@ -10,11 +10,11 @@ def render_main():
     """
     return render_template("main.html")
 
-@app.route("/activate", methods=['GET', 'POST'])
+@app.route("/activate")
 def activate():
-    return handler.activate()
+    return handler.activate(request.query_string)
 
-@app.route("/deactivate", methods=['GET','POST'])
+@app.route("/deactivate")
 def inactivate():
     return handler.deactivate()
 
