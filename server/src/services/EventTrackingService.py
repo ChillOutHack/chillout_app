@@ -1,4 +1,4 @@
-from types import DictType
+from types import ListType
 from datetime import datetime
 
 class EventTrackingService (object):
@@ -8,13 +8,14 @@ class EventTrackingService (object):
     """
 
     @staticmethod
-    def track_event (eventObject):
+    def track_event (events):
         """
             Tracks an event, for now accepts a Dictionary... might turn into JSON string, or individual params?
 
-            @type eventObject: DictType
+            @type eventObject: ListType
         """
-        assert isinstance(eventObject, DictType)
+        assert isinstance(events, ListType)
+        return events
 
     @staticmethod
     def fetch_events (start_time, end_time):
