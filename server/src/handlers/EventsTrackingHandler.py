@@ -24,10 +24,17 @@ class EventTrackingHandler(object):
 
     @staticmethod
     def get_events():
+        """
+            Parse file to get all current events.
+        """
         return json.loads(open(EventTrackingHandler.EVENTS_FILE).read())
 
     @staticmethod
     def get_id():
+        """
+            Find the next new id, by linearly searching all events.
+            Joys of flat file storage.
+        """
         id = 1 
         events = EventTrackingHandler.get_events()
         for event in events:
