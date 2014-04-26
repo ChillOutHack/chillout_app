@@ -17,7 +17,7 @@ def data():
     for pair in pairs:
         (key, value) = pair.split("=")
         data[key] = value
-    return handler.add_event(data)
+    return handler.update_event(data)
 
 if __name__ == "__main__":
     app.run(debug=True)
