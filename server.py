@@ -28,6 +28,21 @@ class Event(db.Model):
     def __repr__(self):
         return '<Event %r>' % self.id
 
+    def to_dict(self):
+        dict = {
+            "id": self.id,
+            "created": str(self.created),
+        }
+        if (self.updated):
+            dict["updated"] = str(self.updated)
+        if (self.temp):
+            dict["temp"] = self.temp
+        if (self.peltier):
+            dict["peltier"] = self.peltier
+        if (self.pentiometer):
+            dict["pentiometer"] = self.pentiometer
+        return dict
+
 db.create_all()
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=5000, debug=True)

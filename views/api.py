@@ -13,6 +13,13 @@ def clear():
 @api.route("/data")
 def data():
     """
-        Route handler for data resources.
+        Route handler to fetch all events.
+    """
+    return EventTrackingHandler.get_events()
+
+@api.route("/update")
+def update():
+    """
+        Route handler to update an event.
     """
     return EventTrackingHandler.update_event(request.args.to_dict())

@@ -12,6 +12,14 @@ class EventTrackingHandler(object):
         db.session.commit()
 
     @staticmethod
+    def get_events():
+        events = EventTrackingHandler.read_events()
+        dicts = []
+        for event in events:
+            dicts.append(event.to_dict())
+        return json.dumps(dicts)
+
+    @staticmethod
     def update_event(data):
         """
             Add a new event, or update an existing one (if id is provided): 
@@ -31,6 +39,9 @@ class EventTrackingHandler(object):
         else:
             EventTrackingHandler.write_event(data)
 
+        """
+            Return value irrelevant; print events for testing purposes.
+        """
         return '<pre>' + pprint.pformat(events) + '</pre>'
 
     @staticmethod
