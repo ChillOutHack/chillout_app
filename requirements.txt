@@ -1,0 +1,7 @@
+flask
+jinja2
+itsdangerous
+sqlalchemy
+Flask-SQLAlchemy
+alembic
+path.py
