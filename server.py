@@ -29,10 +29,16 @@ class Event(db.Model):
         return '<Event %r>' % self.id
 
     def to_dict(self):
+        """
+            Helper for converting events to json.
+        """
         dict = {
             "id": self.id,
             "created": str(self.created),
         }
+        """
+            JSON will turn None into "None", unfortunately
+        """
         if (self.updated):
             dict["updated"] = str(self.updated)
         if (self.temp):
