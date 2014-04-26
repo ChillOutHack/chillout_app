@@ -10,14 +10,14 @@ def render_main():
     """
     return render_template("main.html")
 
-@app.route("/activate")
-def activate():
+@app.route("/data")
+def data():
     pairs = request.query_string.split('&')
     data = {}
     for pair in pairs:
         (key, value) = pair.split("=")
         data[key] = value
-    return handler.activate(data)
+    return handler.add_event(data)
 
 if __name__ == "__main__":
     app.run(debug=True)
