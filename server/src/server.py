@@ -1,3 +1,4 @@
+from handlers import handler
 from flask import Flask, render_template
 app = Flask(__name__)
 
@@ -9,5 +10,13 @@ def render_main():
     """
     return render_template("main.html")
 
+@app.route("/activate", methods=['GET', 'POST'])
+def activate():
+    return handler.activate()
+
+@app.route("/deactivate", methods=['GET','POST'])
+def inactivate():
+    return handler.deactivate()
+
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
