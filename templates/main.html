@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
     "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<html ng-app="chillout">
     <head>
         <title>Chillout App</title>
         <link rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.css">
@@ -10,15 +10,17 @@
         <link rel="stylesheet" href="/static/app/app.css">
     </head>
     <body>
-    <div>
-        Main
-    </div>
+    <div ng-view></div>
     <script src="/static/bower_components/jquery/dist/jquery.js"></script>
     <script src="/static/bower_components/angular/angular.js"></script>
+    <script src="/static/bower_components/angular-route/angular-route.js"></script>
     <script src="/static/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="/static/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="/static/bower_components/d3/d3.js"></script>
     <script src="/static/app/sample.json"></script>
     <script src="/static/app/app.js"></script>
+    <script src="/static/app/components/timeseries/timeseries-controller.js"></script>
+    <script src="/static/app/components/map/map-controller.js"></script>
+    <script src="/static/app/components/calendar/calendar-controller.js"></script>
     </body>
 </html>

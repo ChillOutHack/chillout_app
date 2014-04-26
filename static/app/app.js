@@ -1,16 +1,18 @@
-var chillout = angular.module('chillout', [])
+var chillout = angular.module('chillout', [
+	'ngRoute'
+])
 .config(function ($routeProvider) {
 	$routeProvider.
 	when('/calendar', {
-		templateUrl: 'components/calendar/calendar.tpl.html',
+		templateUrl: 'static/app/components/calendar/calendar.tpl.html',
 		controller: 'CalendarCtrl'
 	}).
 	when('/map', {
-		templateUrl: 'components/calendar/map.tpl.html',
+		templateUrl: 'static/app/components/map/map.tpl.html',
 		controller: 'MapCtrl'
 	}).
 	when('/timeseries', {
-		templateUrl: 'components/calendar/timesereies.tpl.html',
+		templateUrl: 'static/app/components/timeseries/timeseries.tpl.html',
 		controller: 'TimeseriesCtrl'
 	}).
 	otherwise({
