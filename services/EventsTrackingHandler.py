@@ -9,6 +9,7 @@ class EventTrackingHandler(object):
     def clear_events():
         from server import db, Event
         db.session.query(Event).all().delete()
+        db.session.commit()
 
     @staticmethod
     def update_event(data):
