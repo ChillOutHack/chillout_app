@@ -12,11 +12,12 @@ def render_main():
 
 @app.route("/activate")
 def activate():
-    return handler.activate(request.query_string)
-
-@app.route("/deactivate")
-def inactivate():
-    return handler.deactivate()
+    pairs = request.query_string.split('&')
+    data = {}
+    for pair in pairs:
+        (key, value) = pair.split("=")
+        data[key] = value
+    return handler.activate(data)
 
 if __name__ == "__main__":
     app.run(debug=True)
