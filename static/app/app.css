@@ -1,0 +1,5 @@
+.views-container {width:100%; height:100%; text-align: center;}
+.view {}
+.view.timeseries {}
+.view.calendar {}
+.view.map {}

@@ -1,0 +1,29 @@
+{
+  "name": "chillout",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ChillOutHack/chillout_app",
+  "authors": [
+    "hackfit chillout team"
+  ],
+  "description": "chill wrist to reduce anxiety",
+  "keywords": [
+    "wearable",
+    "anxiety"
+  ],
+  "license": "AGPL",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "~1.2.16",
+    "angular-bootstrap": "~0.10.0",
+    "bootstrap": "~3.1.1",
+    "d3": "~3.4.6",
+    "font-awesome": "~4.0.3"
+  }
+}
