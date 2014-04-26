@@ -11,6 +11,13 @@ def render_main():
     """
     return render_template("main.html")
 
+@app.route("/clear")
+def clear():
+    """
+        Clear all user data.
+    """
+    return EventTrackingHandler.clear_events()
+
 @app.route("/data")
 def data():
     """
