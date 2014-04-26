@@ -16,11 +16,21 @@ class EventTrackingHandler(object):
         # parse the request
         events = EventTrackingHandler.get_events()
 
-        # add id, if necessary, and timestamp
-        if "id" not in data:
-            data["id"] = EventTrackingHandler.get_id()
-        data["time"] = str(datetime.now())
-        return 'new event: ' + pprint.pformat(data)
+        if "id" in data:
+            # Editing existing event: find event and overwrite any keys in given data
+            index = 0
+            while index < len(events) and str(data["id"]) != str(events[index]["id"]):
+                index = index + 1
+            if index >= len(events):
+                raise Exception("could not find event with id " + data["id"])
+            for key, value in data.items():
+                events[index][key] = value
+        else:
+            # Adding new event: set id and timestamp, then add to list
+            data["id"] = events[-1]["id"] + 1
+            data["time"] = str(datetime.now())
+            events.append(data)
+        return '<pre>' + pprint.pformat(events) + '</pre>'
 
     @staticmethod
     def get_events():
