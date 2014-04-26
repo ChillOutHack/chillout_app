@@ -23,12 +23,7 @@ def data():
     """
         Route handler for data resources.
     """
-    pairs = request.query_string.split('&')
-    data = {}
-    for pair in pairs:
-        (key, value) = pair.split("=")
-        data[key] = value
-    return EventTrackingHandler.update_event(data)
+    return EventTrackingHandler.update_event(request.args.to_dict())
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=80)
