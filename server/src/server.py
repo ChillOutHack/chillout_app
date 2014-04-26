@@ -21,7 +21,7 @@ def data():
     for pair in pairs:
         (key, value) = pair.split("=")
         data[key] = value
-    return EventTrackingHandler.add_event(data)
+    return EventTrackingHandler.update_event(data)
 
 if __name__ == "__main__":
     app.run(debug=True)
