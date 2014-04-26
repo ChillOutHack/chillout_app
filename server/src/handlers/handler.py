@@ -1,7 +1,8 @@
 import json
 import pprint
 
-def activate(data):
-    events = json.loads(open("data/sample.json").read())
-    return 'i have ' + str(len(events)) + ' events: ' + pprint.pformat(data)
+EVENTS_FILE = "data/sample.json"
 
+def add_event(data):
+    events = json.loads(open(EVENTS_FILE).read())
+    return 'i have ' + str(len(events)) + ' events: ' + pprint.pformat(data)
