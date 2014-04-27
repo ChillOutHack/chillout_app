@@ -3,11 +3,11 @@ chillout.controller('MapCtrl', function ($scope,$rootScope) {
 	console.log('MapCtrl running');
 
 	// set map position
-	var map = L.map('mapcontainer').setView([42.359802,-71.126647], 13);
+	var map = L.map('mapcontainer').setView([42.359295,-71.111455], 15);
 	// draw the map tiles
 	L.tileLayer('http://d.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
 		attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-		maxZoom: 18
+		maxZoom: 20
 	}).addTo(map);
 
 	// listen to each presentation tick

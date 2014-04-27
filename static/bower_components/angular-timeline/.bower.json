@@ -1,0 +1,14 @@
+{
+  "name": "angular-timeline",
+  "homepage": "https://github.com/destegabry/angular-timeline",
+  "version": "0.1.3",
+  "_release": "0.1.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.3",
+    "commit": "375274bd3ec6bab8fd43dcafbd1975c22e5e796c"
+  },
+  "_source": "git://github.com/destegabry/angular-timeline.git",
+  "_target": "~0.1.3",
+  "_originalSource": "angular-timeline"
+}
