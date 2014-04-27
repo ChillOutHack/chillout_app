@@ -1,5 +1,6 @@
 var chillout = angular.module('chillout', [
-	'ngRoute'
+	'ngRoute',
+    'destegabry.timeline'
 ])
 .config(function ($routeProvider) {
 	$routeProvider.
@@ -26,7 +27,6 @@ var chillout = angular.module('chillout', [
 .run(function ($rootScope,$timeout) {
 	console.log('Running chillout module');
 	var seconds = 0;
-	console.log('storydata',angular.copy(storyData));
 	angular.forEach(storyData,function (val,i) {
 		// body...
 		$timeout(function () {
