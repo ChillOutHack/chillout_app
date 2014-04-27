@@ -24,8 +24,15 @@ var chillout = angular.module('chillout', [
 
 
 // run is where we set initial rootscope properties
-.run(function ($rootScope) {
+.run(function ($rootScope,$timeout) {
 	console.log('Running chillout module');
+	var seconds = 0;
+	angular.forEach(storyData,function (val,i) {
+		// body...
+		$timeout(function () {
+			$rootScope.$broadcast('tick', val);
+		},seconds += 1000);
+	});
 })
 
 .controller('RouteCtrl',function ($scope,$location) {
