@@ -9,8 +9,10 @@ class EventTrackingHandler(object):
     def clear_events():
         from server import db, Event
 
-        db.session.query(Event).all().delete()
+        db.session.query(Event).delete()
         db.session.commit()
+
+        return "success"
 
     @staticmethod
     def get_events():
@@ -22,20 +24,21 @@ class EventTrackingHandler(object):
 
         events_list = [event.to_dict() for event in EventTrackingHandler.__fetch_events()]
 
-        return json.dumps({
-            'max_peltier': max((i for i in events_list if i['peltier'] is not None), key=lambda x: x['peltier'])['peltier'],
-            'min_peltier': min((i for i in events_list if i['peltier'] is not None), key=lambda x: x['peltier'])['peltier'],
+        if events_list:
+            return json.dumps({
+                'max_peltier': max((i for i in events_list if i['peltier'] is not None), key=lambda x: x['peltier'])['peltier'],
+                'min_peltier': min((i for i in events_list if i['peltier'] is not None), key=lambda x: x['peltier'])['peltier'],
 
-            'max_pentiometer': max((i for i in events_list if i['pentiometer'] is not None), key=lambda x: x['pentiometer'])['pentiometer'],
-            'min_pentiometer': min((i for i in events_list if i['pentiometer'] is not None), key=lambda x: x['pentiometer'])['pentiometer'],
+                'max_pentiometer': max((i for i in events_list if i['pentiometer'] is not None), key=lambda x: x['pentiometer'])['pentiometer'],
+                'min_pentiometer': min((i for i in events_list if i['pentiometer'] is not None), key=lambda x: x['pentiometer'])['pentiometer'],
 
-            'max_temp': max((i for i in events_list if i['temp'] is not None), key=lambda x: x['temp'])['temp'],
-            'min_temp': min((i for i in events_list if i['temp'] is not None), key=lambda x: x['temp'])['temp'],
+                'max_temp': max((i for i in events_list if i['temp'] is not None), key=lambda x: x['temp'])['temp'],
+                'min_temp': min((i for i in events_list if i['temp'] is not None), key=lambda x: x['temp'])['temp'],
 
-            'events': events_list
-        })
-
-        #return json.dumps([event.to_dict() for event in EventTrackingHandler.__fetch_events()])
+                'events': events_list
+            })
+        else:
+            return json.dumps({"events": []});
 
     @staticmethod
     def update_event(data):
