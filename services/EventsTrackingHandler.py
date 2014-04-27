@@ -13,17 +13,21 @@ class EventTrackingHandler(object):
 
     @staticmethod
     def get_events():
+        """
+            Fetches all events
+
+            @rtype: StringType
+        """
         events = EventTrackingHandler.read_events()
-        dicts = []
-        for event in events:
-            dicts.append(event.to_dict())
-        return json.dumps(dicts)
+        return json.dumps([event.to_dict() for event in events])
 
     @staticmethod
     def update_event(data):
         """
             Add a new event, or update an existing one (if id is provided): 
             determine name and time, add this to whatever data was passed in.
+
+            @type date: DictType
         """
         from server import db, Event
         # parse the request
