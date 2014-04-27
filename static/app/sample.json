@@ -1,12 +1,11 @@
-[{
+var storyData = [{
 	"time": "20140426 10:25:14",
 	"entry": "at home",
 	"isactive": 0,
 	"temp_skin": 92.1,
 	"temp_peltier": 91.8,
 	"temp_delta": 0.7,
-	"latitude": 42.359802,
-	"longitude": -71.126647
+	"coordinates":[42.359802,-71.126647]
 }, {
 	"time": "20140426 10:25:14",
 	"entry": "just hit traffic",
@@ -14,8 +13,7 @@
 	"temp_skin": 92.1,
 	"temp_peltier": 91.8,
 	"temp_delta": 0.7,
-	"latitude": 42.353016,
-	"longitude": -71.115746
+	"coordinates":[42.353016,-71.115746]
 }, {
 	"time": "20140426 10:25:14",
 	"entry": "stuck in traffic",
@@ -23,8 +21,7 @@
 	"temp_skin": 92.1,
 	"temp_peltier": 91.8,
 	"temp_delta": 0.7,
-	"latitude": 42.351367,
-	"longitude": -71.112485
+	"coordinates":[42.351367,-71.112485]
 }, {
 	"time": "20140426 10:25:14",
 	"entry": "No time for this...",
@@ -32,8 +29,7 @@
 	"temp_skin": 92.1,
 	"temp_peltier": 91.8,
 	"temp_delta": 0.7,
-	"latitude": 42.349717,
-	"longitude": -71.108966
+	"coordinates":[42.349717,-71.108966]
 }, {
 	"time": "20140426 10:25:14",
 	"entry": "Still stuck... my boss will be upset",
@@ -41,8 +37,7 @@
 	"temp_skin": 92.1,
 	"temp_peltier": 91.8,
 	"temp_delta": 0.7,
-	"latitude": 42.348385,
-	"longitude": -71.104074
+	"coordinates":[42.348385,-71.104074]
 }, {
 	"time": "20140426 10:25:14",
 	"entry": "oooh... nice",
@@ -50,8 +45,7 @@
 	"temp_skin": 92.1,
 	"temp_peltier": 91.8,
 	"temp_delta": 0.7,
-	"latitude": 42.347814,
-	"longitude": -71.100297
+	"coordinates":[42.347814,-71.100297]
 }, {
 	"time": "20140426 10:25:14",
 	"entry": "everything will be okay",
@@ -59,8 +53,7 @@
 	"temp_skin": 92.1,
 	"temp_peltier": 91.8,
 	"temp_delta": 0.7,
-	"latitude": 42.347814,
-	"longitude": -71.096263
+	"coordinates":[42.347814,-71.096263]
 }, {
 	"time": "20140426 10:25:14",
 	"entry": "arrived at work",
@@ -68,8 +61,7 @@
 	"temp_skin": 92.1,
 	"temp_peltier": 91.8,
 	"temp_delta": 0.7,
-	"latitude": 42.347814,
-	"longitude": -71.096263
+	"coordinates":[42.347814,-71.096263]
 }, {
 	"time": "20140426 10:13:14",
 	"entry": "on the phone with boss",
@@ -77,8 +69,7 @@
 	"temp_skin": 92.1,
 	"temp_peltier": 91.8,
 	"temp_delta": 0.7,
-	"latitude": 42.347814,
-	"longitude": -71.096263
+	"coordinates":[42.347814,-71.096263]
 }, {
 	"time": "20140426 10:15:10",
 	"entry": "found out about bad news",
@@ -86,8 +77,7 @@
 	"temp_skin": 92.1,
 	"temp_peltier": 91.8,
 	"temp_delta": 0.7,
-	"latitude": 42.347814,
-	"longitude": -71.096263
+	"coordinates":[42.347814,-71.096263]
 }, {
 	"time": "20140426 14:13:14",
 	"entry": "spoke to large group",
@@ -95,8 +85,7 @@
 	"temp_skin": 92.1,
 	"temp_peltier": 91.8,
 	"temp_delta": 0.7,
-	"latitude": 42.347814,
-	"longitude": -71.096263
+	"coordinates":[42.347814,-71.096263]
 }, {
 	"time": "20140426 14:17:04",
 	"entry": "getting ready to drive home",
@@ -104,6 +93,5 @@
 	"temp_skin": 92.1,
 	"temp_peltier": 91.8,
 	"temp_delta": 0.7,
-	"latitude": 42.347814,
-	"longitude": -71.096263
+	"coordinates":[42.347814,-71.096263]
 }]
