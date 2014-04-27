@@ -3,24 +3,23 @@ chillout.controller('TimeseriesCtrl', function ($scope) {
     
     var graph = null,
         xAxis = null,
-        yAxis = null;
+        yAxis = null,
+        chartElement = document.getElementById("timeseries-chart");
 
-    var fetchData = function () {
+    var fetchData = function (callback) {
+        console.log("fetching");
         $.ajax('/api/data', {
-            complete: renderGraph
+            complete: callback
         });
     };
 
     var time = new Rickshaw.Fixtures.Time();
     var minute = time.unit('minute');
 
-    //more stuff here for reference
-    //http://code.shutterstock.com/rickshaw/
-	var renderGraph = function (data) {
+    var prepData = function (data) {
         /**
-         * Renders the graph with data retrieved from the remote service /api/data
+         * Gets min, max, and prepares the data points
          */
-
         data = JSON.parse(data.responseText).reverse();
 
         //this is hacky, but will have to suffice for now
@@ -42,27 +41,46 @@ chillout.controller('TimeseriesCtrl', function ($scope) {
                 y: x_value
             }
         });
+
+        return {
+            min: min,
+            max: max,
+            points: points
+        };
+    };
+
+    //more stuff here for reference
+    //http://code.shutterstock.com/rickshaw/
+	var renderGraph = function (data) {
+        /**
+         * Renders the graph with data retrieved from the remote service /api/data
+         */
+        data = prepData(data);
+
+        chartElement.innerHTML = "";
         
         graph = new Rickshaw.Graph( {
-            element: document.querySelector("#timeseries-chart"),
-            width: 800,
+            element: chartElement,
+            width: 1080,
             height: 280,
             series: [{
                 color: 'steelblue',
-                data: points,
+                data: data.points,
                 name: "Temperature"
             }],
-            min: min - 5,
-            max: max + 5
+            min: data.min - 5,
+            max: data.max + 5
         });
 
-        xAxis = new Rickshaw.Graph.Axis.Time({
-            graph: graph,
-            timeUnit: minute,
-            tickFormat: function(d) {
-                d = new Date(d)
-                return d3.time.format("%c")(d)
-            }
+        var format = function(d) {
+            d = new Date(d*1000)
+            return d3.time.format('%b %e %X')(d)
+        };
+
+        xAxis = new Rickshaw.Graph.Axis.X({
+                graph: graph,
+                tickFormat: format,
+                ticks: 4
         });
 
         yAxis = new Rickshaw.Graph.Axis.Y({
@@ -71,8 +89,7 @@ chillout.controller('TimeseriesCtrl', function ($scope) {
 
         var hoverDetail = new Rickshaw.Graph.HoverDetail ({
             graph: graph,
-            // xFormatter: function(x) {return x},
-            // yFormatter: function(y) {return "Temp" + y}
+            xFormatter: function(x) {return new Date(x*1000)}
         });
 
         graph.render();
@@ -80,7 +97,16 @@ chillout.controller('TimeseriesCtrl', function ($scope) {
         yAxis.render();
 	};
 
+    fetchData(renderGraph);
 
-    fetchData();
-	//renderGraph();
+    window.setInterval(function(){
+        //update function by polling every 3.5 seconds
+        fetchData(function(d){
+            data = prepData(d);
+
+            graph.series[0].data = data.points;
+            graph.update();
+            console.log("updated");
+        });
+    }, 3500);
 });
