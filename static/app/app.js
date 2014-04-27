@@ -7,16 +7,17 @@ var chillout = angular.module('chillout', [
 		templateUrl: 'static/app/components/calendar/calendar.tpl.html',
 		controller: 'CalendarCtrl'
 	}).
+	when('/mapandchart', {
+		templateUrl: 'static/app/components/mapandchart/mapandchart.tpl.html'
+	}).
 	when('/map', {
-		templateUrl: 'static/app/components/map/map.tpl.html',
-		controller: 'MapCtrl'
+		templateUrl: 'static/app/components/map/map.tpl.html'
 	}).
 	when('/timeseries', {
-		templateUrl: 'static/app/components/timeseries/timeseries.tpl.html',
-		controller: 'TimeseriesCtrl'
+		templateUrl: 'static/app/components/timeseries/timeseries.tpl.html'
 	}).
 	otherwise({
-		redirectTo: '/map'
+		redirectTo: '/mapandchart'
 	});
 })
 
@@ -24,4 +25,12 @@ var chillout = angular.module('chillout', [
 // run is where we set initial rootscope properties
 .run(function ($rootScope) {
 	console.log('Running chillout module');
+})
+
+.controller('RouteCtrl',function ($scope,$location) {
+	$scope.reRoute = function (path) {
+		console.log('switching path to:',path);
+		$location.path(path);
+		$scope.activeBtn = path.slice(1);
+	}
 });
