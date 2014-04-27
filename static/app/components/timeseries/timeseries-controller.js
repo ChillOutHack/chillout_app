@@ -72,8 +72,8 @@ chillout.controller('TimeseriesCtrl', function ($scope) {
         
         graph = new Rickshaw.Graph( {
             element: chartElement,
-            width: 1080,
-            height: 280,
+            width: 1100,
+            height: 480,
             renderer: 'line',
             series: [
                 {
@@ -84,10 +84,10 @@ chillout.controller('TimeseriesCtrl', function ($scope) {
                 {
                     color: 'lightblue',
                     data: data.peltierPoints,
-                    name: "Peltier Temperature"
+                    name: "Peltier"
                 }],
-            min: data.min - 5,
-            max: data.max + 5,
+            min: data.min - 10,
+            max: 200,
             interpolation: 'linear'
         });
 
