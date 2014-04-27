@@ -21,7 +21,7 @@ chillout.controller('TimeseriesCtrl', function ($scope) {
          * Renders the graph with data retrieved from the remote service /api/data
          */
 
-        data = JSON.parse(data.responseText);
+        data = JSON.parse(data.responseText).reverse();
 
         //this is hacky, but will have to suffice for now
         var min = 100,
@@ -58,7 +58,11 @@ chillout.controller('TimeseriesCtrl', function ($scope) {
 
         xAxis = new Rickshaw.Graph.Axis.Time({
             graph: graph,
-            timeUnit: minute
+            timeUnit: minute,
+            tickFormat: function(d) {
+                d = new Date(d)
+                return d3.time.format("%c")(d)
+            }
         });
 
         yAxis = new Rickshaw.Graph.Axis.Y({

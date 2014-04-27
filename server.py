@@ -31,6 +31,8 @@ class Event(db.Model):
     def to_dict(self):
         """
             Helper for converting events to json.
+
+            @rtype: DictType
         """
         dict = {
             "id": self.id,
