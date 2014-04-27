@@ -1,6 +1,6 @@
 chillout.controller('MapCtrl', function ($scope) {
+	// $scope.$on('$viewContentLoaded',function () {
 	console.log('MapCtrl running');
-	$scope.$on('$viewContentLoaded',function () {
 		var map = L.map('mapcontainer').setView([42.359802,-71.126647], 13);
 		// to switch these to other tiles, check out the examples at https://github.com/shramov/leaflet-plugins
 		// the google api allows for customizable google maps icons
@@ -10,5 +10,5 @@ chillout.controller('MapCtrl', function ($scope) {
 		}).addTo(map);
 		var marker = L.marker([42.359802,-71.126647]).addTo(map);
 		// console.log('mapcontainer',mapcontainer);
-	});
+	// });
 });

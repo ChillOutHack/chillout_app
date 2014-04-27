@@ -1,5 +1,5 @@
 var storyData = [{
-	"time": "20140426 10:25:14",
+	"time": "20140426 08:00:00",
 	"entry": "at home",
 	"isactive": 0,
 	"temp_skin": 92.1,
@@ -7,7 +7,7 @@ var storyData = [{
 	"temp_delta": 0.7,
 	"coordinates":[42.359802,-71.126647]
 }, {
-	"time": "20140426 10:25:14",
+	"time": "20140426 08:15:00",
 	"entry": "just hit traffic",
 	"isactive": 0,
 	"temp_skin": 92.1,
@@ -15,7 +15,7 @@ var storyData = [{
 	"temp_delta": 0.7,
 	"coordinates":[42.353016,-71.115746]
 }, {
-	"time": "20140426 10:25:14",
+	"time": "20140426 08:30:00",
 	"entry": "stuck in traffic",
 	"isactive": 0,
 	"temp_skin": 92.1,
@@ -23,7 +23,7 @@ var storyData = [{
 	"temp_delta": 0.7,
 	"coordinates":[42.351367,-71.112485]
 }, {
-	"time": "20140426 10:25:14",
+	"time": "20140426 08:45:00",
 	"entry": "No time for this...",
 	"isactive": 0,
 	"temp_skin": 92.1,
@@ -31,7 +31,7 @@ var storyData = [{
 	"temp_delta": 0.7,
 	"coordinates":[42.349717,-71.108966]
 }, {
-	"time": "20140426 10:25:14",
+	"time": "20140426 09:00:00",
 	"entry": "Still stuck... my boss will be upset",
 	"isactive": 0,
 	"temp_skin": 92.1,
@@ -39,7 +39,7 @@ var storyData = [{
 	"temp_delta": 0.7,
 	"coordinates":[42.348385,-71.104074]
 }, {
-	"time": "20140426 10:25:14",
+	"time": "20140426 09:15:00",
 	"entry": "oooh... nice",
 	"isactive": 1,
 	"temp_skin": 92.1,
@@ -47,7 +47,7 @@ var storyData = [{
 	"temp_delta": 0.7,
 	"coordinates":[42.347814,-71.100297]
 }, {
-	"time": "20140426 10:25:14",
+	"time": "20140426 09:30:00",
 	"entry": "everything will be okay",
 	"isactive": 0,
 	"temp_skin": 92.1,
@@ -55,7 +55,7 @@ var storyData = [{
 	"temp_delta": 0.7,
 	"coordinates":[42.347814,-71.096263]
 }, {
-	"time": "20140426 10:25:14",
+	"time": "20140426 09:45:00",
 	"entry": "arrived at work",
 	"isactive": 0,
 	"temp_skin": 92.1,
@@ -63,7 +63,7 @@ var storyData = [{
 	"temp_delta": 0.7,
 	"coordinates":[42.347814,-71.096263]
 }, {
-	"time": "20140426 10:13:14",
+	"time": "20140426 10:00:00",
 	"entry": "on the phone with boss",
 	"isactive": 0,
 	"temp_skin": 92.1,
@@ -71,7 +71,7 @@ var storyData = [{
 	"temp_delta": 0.7,
 	"coordinates":[42.347814,-71.096263]
 }, {
-	"time": "20140426 10:15:10",
+	"time": "20140426 10:15:00",
 	"entry": "found out about bad news",
 	"isactive": 1,
 	"temp_skin": 92.1,
@@ -79,7 +79,7 @@ var storyData = [{
 	"temp_delta": 0.7,
 	"coordinates":[42.347814,-71.096263]
 }, {
-	"time": "20140426 14:13:14",
+	"time": "20140426 10:30:00",
 	"entry": "spoke to large group",
 	"isactive": 1,
 	"temp_skin": 92.1,
@@ -87,7 +87,7 @@ var storyData = [{
 	"temp_delta": 0.7,
 	"coordinates":[42.347814,-71.096263]
 }, {
-	"time": "20140426 14:17:04",
+	"time": "20140426 10:45:00",
 	"entry": "getting ready to drive home",
 	"isactive": 0,
 	"temp_skin": 92.1,

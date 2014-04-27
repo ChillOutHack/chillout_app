@@ -7,16 +7,17 @@ var chillout = angular.module('chillout', [
 		templateUrl: 'static/app/components/calendar/calendar.tpl.html',
 		controller: 'CalendarCtrl'
 	}).
+	when('/mapandchart', {
+		templateUrl: 'static/app/components/mapandchart/mapandchart.tpl.html'
+	}).
 	when('/map', {
-		templateUrl: 'static/app/components/map/map.tpl.html',
-		controller: 'MapCtrl'
+		templateUrl: 'static/app/components/map/map.tpl.html'
 	}).
 	when('/timeseries', {
-		templateUrl: 'static/app/components/timeseries/timeseries.tpl.html',
-		controller: 'TimeseriesCtrl'
+		templateUrl: 'static/app/components/timeseries/timeseries.tpl.html'
 	}).
 	otherwise({
-		redirectTo: '/map'
+		redirectTo: '/mapandchart'
 	});
 })
 

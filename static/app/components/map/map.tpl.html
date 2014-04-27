@@ -1,25 +1,5 @@
-<div class="view map" style="position:absolute;width:100%;height:100%;">
-	<script>
-		var geojsonFeature = {
-		    "type": "Feature",
-		    "properties": {
-		        "name": "Coors Field",
-		        "amenity": "Baseball Stadium",
-		        "popupContent": "This is where the Rockies play!"
-		    },
-		    "geometry": {
-		        "type": "Point",
-		        "coordinates": [-104.99404, 39.75621]
-		    }
-		};
-	</script>
-	<style type="text/css">
-		#mapcontainer {height:100%;}
-	</style>
-	<div id="mapcontainer" style="width:100%;height:50%">
+<div class="view map" style="position:relative;width:100%;height:100%;" ng-controller="MapCtrl">
+	<div id="mapcontainer" style="width:100%;height:100%">
 		MAP
-	</div>
-	<div id="timeseries" style="width:100%;height:50%">
-		TIMESERIES
 	</div>
 </div>
