@@ -15,7 +15,7 @@ def data():
     """
         Route handler to fetch all events.
     """
-    return EventTrackingHandler.get_events()
+    return EventTrackingHandler.get_events(request.args.to_dict())
 
 @api.route("/update")
 def update():
