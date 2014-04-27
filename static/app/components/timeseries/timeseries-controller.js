@@ -59,7 +59,8 @@ chillout.controller('TimeseriesCtrl', function ($scope) {
                 name: "Temperature"
             }],
             min: data.min - 5,
-            max: data.max + 5
+            max: data.max + 5,
+            interpolation: 'linear'
         });
 
         var format = function(d) {
