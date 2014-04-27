@@ -1,6 +1,6 @@
-from datetime import datetime
 import json
 import pprint
+from types import IntType
 from flask import current_app
 
 class EventTrackingHandler(object):
@@ -8,18 +8,44 @@ class EventTrackingHandler(object):
     @staticmethod
     def clear_events():
         from server import db, Event
+
         db.session.query(Event).all().delete()
         db.session.commit()
+
+    @staticmethod
+    def get_events():
+        """
+            Fetches all events
+
+            @rtype: StringType
+        """
+
+        events_list = [event.to_dict() for event in EventTrackingHandler.__fetch_events()]
+
+        return json.dumps({
+            'max_peltier': max(events_list, key=lambda x: x['peltier'])['peltier'],
+            'min_peltier': min(events_list, key=lambda x: x['peltier'])['peltier'],
+
+            'max_pentiometer': max(events_list, key=lambda x: x['pentiometer'])['pentiometer'],
+            'min_pentiometer': min(events_list, key=lambda x: x['pentiometer'])['pentiometer'],
+
+            'max_temp': max(events_list, key=lambda x: x['temp'])['temp'],
+            'min_temp': min(events_list, key=lambda x: x['temp'])['temp'],
+
+            'events': events_list
+        })
+
+        return json.dumps([event.to_dict() for event in EventTrackingHandler.__fetch_events()])
 
     @staticmethod
     def update_event(data):
         """
             Add a new event, or update an existing one (if id is provided): 
             determine name and time, add this to whatever data was passed in.
+
+            @type date: DictType
         """
         from server import db, Event
-        # parse the request
-        events = EventTrackingHandler.read_events()
 
         if "id" in data:
             # Editing existing event: find event and overwrite any keys in given data
@@ -29,18 +55,34 @@ class EventTrackingHandler(object):
                     setattr(ev[0], key, value)
             db.session.commit()
         else:
-            EventTrackingHandler.write_event(data)
+            EventTrackingHandler.__write_event(data)
 
-        return '<pre>' + pprint.pformat(events) + '</pre>'
+        #always return "success"
+        return "success"
 
     @staticmethod
-    def read_events():
+    def __fetch_events(num_to_fetch=None):
+        """
+            Fetches events sorted descendingly based on the created date.
+            L{num_to_fetch} is an optional parameter
+
+            @type num_to_fetch: IntType or None
+            @rtype: GeneratorType
+        """
         from server import db, Event
-        events = db.session.query(Event).all()
-        return events
+
+        if not num_to_fetch:
+            return (x for x in db.session.query(Event)\
+                        .order_by(Event.created.desc()))
+        else:
+            assert isinstance(num_to_fetch, IntType), type(num_to_fetch)
+
+            return (x for x in db.session.query(Event)\
+                        .order_by(Event.created.desc())\
+                        .limit(num_to_fetch))
 
     @staticmethod
-    def write_event(event):
+    def __write_event(event):
         from server import db, Event
         event = Event(
             peltier=event['peltier'],
