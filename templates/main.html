@@ -11,19 +11,25 @@
         <link rel="stylesheet" href="/static/app/app.css">
     </head>
     <body>
+    <div class="router btn-group" ng-controller="RouteCtrl" style="display:none;">
+			<button type="button" class="btn btn-default" ng-class="{active:activeBtn=='map'}" ng-click="reRoute('/map')">map</button>
+			<button type="button" class="btn btn-default" ng-class="{active:activeBtn=='calendar'}" ng-click="reRoute('/calendar')">calendar</button>
+			<button type="button" class="btn btn-default" ng-class="{active:activeBtn=='timeseries'}" ng-click="reRoute('/timeseries')">chart</button>
+    </div>
     <div ng-view></div>
+
     <script src="/static/bower_components/jquery/dist/jquery.js"></script>
     <script src="/static/bower_components/angular/angular.js"></script>
     <script src="/static/bower_components/angular-route/angular-route.js"></script>
     <script src="/static/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="/static/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="/static/bower_components/d3/d3.js"></script>
-    <script src="/static/bower_components/d3/d3.layout.js"></script>
-    <script src="/static/bower_components/rickshaw/rickshaw.js"></script>
+    <script src="/static/leaflet-0.7.2/leaflet-src.js"></script>
     <script src="/static/app/sample.json"></script>
     <script src="/static/app/app.js"></script>
     <script src="/static/app/components/timeseries/timeseries-controller.js"></script>
     <script src="/static/app/components/map/map-controller.js"></script>
+    <script src="/static/app/components/mapandchart/mapandchart-controller.js"></script>
     <script src="/static/app/components/calendar/calendar-controller.js"></script>
-    </body>
+  </body>
 </html>
