@@ -34,21 +34,15 @@ class Event(db.Model):
 
             @rtype: DictType
         """
-        dict = {
+        return {
             "id": self.id,
             "created": str(self.created),
+            "updated": str(self.updated) if self.updated else None,
+            "temp": self.temp if self.temp else None,
+            "peltier": self.peltier if self.peltier else None,
+            "pentiometer": self.pentiometer if self.pentiometer else None
         }
-        """
-            JSON will turn None into "None", unfortunately
-        """
-        if (self.updated):
-            dict["updated"] = str(self.updated)
-        if (self.temp):
-            dict["temp"] = self.temp
-        if (self.peltier):
-            dict["peltier"] = self.peltier
-        if (self.pentiometer):
-            dict["pentiometer"] = self.pentiometer
+
         return dict
 
 db.create_all()
