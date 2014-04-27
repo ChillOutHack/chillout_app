@@ -4,17 +4,18 @@ chillout.controller('TimeseriesCtrl', function ($scope) {
     var graph = null,
         xAxis = null,
         yAxis = null,
-        chartElement = document.getElementById("timeseries-chart");
+        chartElement = document.getElementById("timeseries-chart"),
+        time = new Rickshaw.Fixtures.Time(),
+        minute = time.unit('minute');
 
     var fetchData = function (callback) {
         console.log("fetching");
-        $.ajax('/api/data', {
+
+        $.ajax('/api/data?num_requests=50', {
+            type: 'GET',
             complete: callback
         });
     };
-
-    var time = new Rickshaw.Fixtures.Time();
-    var minute = time.unit('minute');
 
     var prepData = function (data) {
         /**
