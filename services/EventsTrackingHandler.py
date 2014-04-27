@@ -1,6 +1,6 @@
 import json
 import pprint
-from types import IntType
+from types import IntType, DictType
 from flask import current_app
 
 class EventTrackingHandler(object):
@@ -15,14 +15,22 @@ class EventTrackingHandler(object):
         return "success"
 
     @staticmethod
-    def get_events():
+    def get_events(params):
         """
             Fetches all events
 
+            @type params: DictType
             @rtype: StringType
         """
+        assert isinstance(params, DictType), type(params)
 
-        events_list = [event.to_dict() for event in EventTrackingHandler.__fetch_events()]
+        if 'num_requests' not in params:
+            params['num_requests'] = None
+        else:
+            params['num_requests'] = int(params['num_requests'])
+
+        events_list = [event.to_dict() for event in EventTrackingHandler.__fetch_events(params['num_requests'])]
+
 
         if events_list:
             return json.dumps({
@@ -46,7 +54,7 @@ class EventTrackingHandler(object):
             Add a new event, or update an existing one (if id is provided): 
             determine name and time, add this to whatever data was passed in.
 
-            @type date: DictType
+            @type data: DictType
         """
         from server import db, Event
 
