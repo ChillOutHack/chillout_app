@@ -1,6 +1,6 @@
-from datetime import datetime
 import json
 import pprint
+from types import IntType
 from flask import current_app
 
 class EventTrackingHandler(object):
@@ -8,6 +8,7 @@ class EventTrackingHandler(object):
     @staticmethod
     def clear_events():
         from server import db, Event
+
         db.session.query(Event).all().delete()
         db.session.commit()
 
@@ -18,8 +19,8 @@ class EventTrackingHandler(object):
 
             @rtype: StringType
         """
-        events = EventTrackingHandler.read_events()
-        return json.dumps([event.to_dict() for event in events])
+
+        return json.dumps([event.to_dict() for event in EventTrackingHandler.__fetch_events()])
 
     @staticmethod
     def update_event(data):
@@ -30,8 +31,6 @@ class EventTrackingHandler(object):
             @type date: DictType
         """
         from server import db, Event
-        # parse the request
-        events = EventTrackingHandler.read_events()
 
         if "id" in data:
             # Editing existing event: find event and overwrite any keys in given data
@@ -41,22 +40,34 @@ class EventTrackingHandler(object):
                     setattr(ev[0], key, value)
             db.session.commit()
         else:
-            EventTrackingHandler.write_event(data)
+            EventTrackingHandler.__write_event(data)
 
-        """
-            Return value irrelevant; print events for testing purposes.
-        """
-        return '<pre>' + pprint.pformat(events) + '</pre>'
+        #always return "success"
+        return "success"
 
     @staticmethod
-    def read_events():
+    def __fetch_events(num_to_fetch=None):
+        """
+            Fetches events sorted descendingly based on the created date.
+            L{num_to_fetch} is an optional parameter
+
+            @type num_to_fetch: IntType or None
+            @rtype: GeneratorType
+        """
         from server import db, Event
-        events = db.session.query(Event).all()
-        return events
+
+        if not num_to_fetch:
+            return (x for x in db.session.query(Event)\
+                        .order_by(Event.created.desc()))
+        else:
+            assert isinstance(num_to_fetch, IntType), type(num_to_fetch)
+
+            return (x for x in db.session.query(Event)\
+                        .order_by(Event.created.desc())\
+                        .limit(num_to_fetch))
 
     @staticmethod
-    def write_event(event):
-        from server import db, Event
+    def __write_event(event):
         event = Event(
             peltier=event['peltier'],
             pentiometer=event['potentiometer'],
