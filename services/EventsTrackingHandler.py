@@ -20,6 +20,21 @@ class EventTrackingHandler(object):
             @rtype: StringType
         """
 
+        events_list = [event.to_dict() for event in EventTrackingHandler.__fetch_events()]
+
+        return json.dumps({
+            'max_peltier': max(events_list, key=lambda x: x['peltier'])['peltier'],
+            'min_peltier': min(events_list, key=lambda x: x['peltier'])['peltier'],
+
+            'max_pentiometer': max(events_list, key=lambda x: x['pentiometer'])['pentiometer'],
+            'min_pentiometer': min(events_list, key=lambda x: x['pentiometer'])['pentiometer'],
+
+            'max_temp': max(events_list, key=lambda x: x['temp'])['temp'],
+            'min_temp': min(events_list, key=lambda x: x['temp'])['temp'],
+
+            'events': events_list
+        })
+
         return json.dumps([event.to_dict() for event in EventTrackingHandler.__fetch_events()])
 
     @staticmethod
@@ -68,6 +83,7 @@ class EventTrackingHandler(object):
 
     @staticmethod
     def __write_event(event):
+        from server import db, Event
         event = Event(
             peltier=event['peltier'],
             pentiometer=event['potentiometer'],
