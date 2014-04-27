@@ -24,7 +24,7 @@ chillout.controller('TimeseriesCtrl', function ($scope) {
         data = JSON.parse(data.responseText);
         data.events.reverse();
 
-        var points = data.events.map(function (d) {
+        var tempPoints = data.events.map(function (d) {
             return {
                 //currently displaying as GMT
                 x: Date.parse(d.created)/1000, //wow i can't believe this works!
@@ -32,10 +32,31 @@ chillout.controller('TimeseriesCtrl', function ($scope) {
             }
         });
 
+        var peltierPoints = data.events.map(function(d){
+            return {
+                //currently displaying as GMT
+                x: Date.parse(d.created)/1000, //wow i can't believe this works!
+                y: d.peltier
+            }
+        });
+
+        var pentiometerPoints = data.events.map(function(d){
+            return {
+                //currently displaying as GMT
+                x: Date.parse(d.created)/1000, //wow i can't believe this works!
+                y: d.pentiometer                
+            }
+        });
+
+        var max = Math.max(data.max_peltier, data.max_temp),
+            min = Math.min(data.max_peltier, data.max_temp);
+
         return {
-            min: data.min_temp,
-            max: data.max_temp,
-            points: points
+            min: min - 20,
+            max: max,
+            tempPoints: tempPoints,
+            peltierPoints: peltierPoints,
+            pentiometerPoints: pentiometerPoints
         };
     };
 
@@ -53,11 +74,18 @@ chillout.controller('TimeseriesCtrl', function ($scope) {
             element: chartElement,
             width: 1080,
             height: 280,
-            series: [{
-                color: 'steelblue',
-                data: data.points,
-                name: "Temperature"
-            }],
+            renderer: 'line',
+            series: [
+                {
+                    color: 'steelblue',
+                    data: data.tempPoints,
+                    name: "Temperature"
+                },
+                {
+                    color: 'lightblue',
+                    data: data.peltierPoints,
+                    name: "Peltier Temperature"
+                }],
             min: data.min - 5,
             max: data.max + 5,
             interpolation: 'linear'
@@ -95,7 +123,8 @@ chillout.controller('TimeseriesCtrl', function ($scope) {
         fetchData(function(d){
             data = prepData(d);
 
-            graph.series[0].data = data.points;
+            graph.series[0].data = data.tempPoints;
+            graph.series[1].data = data.peltierPoints;
             graph.update();
             console.log("updated");
         });
