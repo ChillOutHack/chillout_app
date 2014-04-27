@@ -54,44 +54,4 @@ var storyData = [{
 	"temp_peltier": 91.8,
 	"temp_delta": 0.7,
 	"coordinates":[42.347814,-71.096263]
-}, {
-	"time": "20140426 09:45:00",
-	"entry": "arrived at work",
-	"isactive": 0,
-	"temp_skin": 92.1,
-	"temp_peltier": 91.8,
-	"temp_delta": 0.7,
-	"coordinates":[42.347814,-71.096263]
-}, {
-	"time": "20140426 10:00:00",
-	"entry": "on the phone with boss",
-	"isactive": 0,
-	"temp_skin": 92.1,
-	"temp_peltier": 91.8,
-	"temp_delta": 0.7,
-	"coordinates":[42.347814,-71.096263]
-}, {
-	"time": "20140426 10:15:00",
-	"entry": "found out about bad news",
-	"isactive": 1,
-	"temp_skin": 92.1,
-	"temp_peltier": 91.8,
-	"temp_delta": 0.7,
-	"coordinates":[42.347814,-71.096263]
-}, {
-	"time": "20140426 10:30:00",
-	"entry": "spoke to large group",
-	"isactive": 1,
-	"temp_skin": 92.1,
-	"temp_peltier": 91.8,
-	"temp_delta": 0.7,
-	"coordinates":[42.347814,-71.096263]
-}, {
-	"time": "20140426 10:45:00",
-	"entry": "getting ready to drive home",
-	"isactive": 0,
-	"temp_skin": 92.1,
-	"temp_peltier": 91.8,
-	"temp_delta": 0.7,
-	"coordinates":[42.347814,-71.096263]
 }]
