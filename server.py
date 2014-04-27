@@ -6,18 +6,7 @@ from datetime import datetime
 from path import path
 import os
 
-class CustomFlask(Flask):
-    jinja_options = Flask.jinja_options.copy()
-    jinja_options.update(dict(
-        block_start_string='<%',
-        block_end_string='%>',
-        variable_start_string='%%',
-        variable_end_string='%%',
-        comment_start_string='<#',
-        comment_end_string='#>',
-    ))
-
-app = CustomFlask(__name__)
+app = Flask(__name__)
 app.register_blueprint(api, url_prefix='/api')
 app.register_blueprint(main)
 
@@ -38,6 +27,29 @@ class Event(db.Model):
 
     def __repr__(self):
         return '<Event %r>' % self.id
+
+    def to_dict(self):
+        """
+            Helper for converting events to json.
+
+            @rtype: DictType
+        """
+        dict = {
+            "id": self.id,
+            "created": str(self.created),
+        }
+        """
+            JSON will turn None into "None", unfortunately
+        """
+        if (self.updated):
+            dict["updated"] = str(self.updated)
+        if (self.temp):
+            dict["temp"] = self.temp
+        if (self.peltier):
+            dict["peltier"] = self.peltier
+        if (self.pentiometer):
+            dict["pentiometer"] = self.pentiometer
+        return dict
 
 db.create_all()
 if __name__ == "__main__":
