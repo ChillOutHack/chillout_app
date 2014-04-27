@@ -20,31 +20,20 @@ chillout.controller('TimeseriesCtrl', function ($scope) {
         /**
          * Gets min, max, and prepares the data points
          */
-        data = JSON.parse(data.responseText).reverse();
+        data = JSON.parse(data.responseText);
+        data.events.reverse();
 
-        //this is hacky, but will have to suffice for now
-        var min = 100,
-            max = 0;
-
-        var points = data.map(function (d) {
-            var x_value = d.temp;
-
-            if (x_value > max) {
-                max = x_value;
-            }
-            if (x_value < min) {
-                min = x_value;
-            }
+        var points = data.events.map(function (d) {
             return {
                 //currently displaying as GMT
                 x: Date.parse(d.created)/1000, //wow i can't believe this works!
-                y: x_value
+                y: d.temp
             }
         });
 
         return {
-            min: min,
-            max: max,
+            min: data.min_temp,
+            max: data.max_temp,
             points: points
         };
     };
