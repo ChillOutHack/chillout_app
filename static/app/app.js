@@ -1,5 +1,6 @@
 var chillout = angular.module('chillout', [
-	'ngRoute'
+	'ngRoute',
+    'destegabry.timeline'
 ])
 .config(function ($routeProvider) {
 	$routeProvider.
