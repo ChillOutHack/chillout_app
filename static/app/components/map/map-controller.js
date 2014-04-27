@@ -3,7 +3,7 @@ chillout.controller('MapCtrl', function ($scope,$rootScope) {
 	console.log('MapCtrl running');
 
 	// set map position
-	var map = L.map('mapcontainer').setView([42.359295,-71.111455], 15);
+	var map = L.map('mapcontainer').setView([42.356251,-71.095405], 15);
 	// draw the map tiles
 	L.tileLayer('http://d.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
 		attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',

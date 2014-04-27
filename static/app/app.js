@@ -31,7 +31,7 @@ var chillout = angular.module('chillout', [
 		// body...
 		$timeout(function () {
 			$rootScope.$broadcast('tick', val);
-		},seconds += 1000);
+		},seconds += 5000);
 	});
 })
 
